@@ -1,6 +1,20 @@
 apiVersion: v1
+data:
+  defaultPipelineRoot: s3://owen-dev-test
+  providers: |-
+    s3:
+      default:
+        endpoint: s3.amazonaws.com
+        disableSSL: false
+        region: us-east-1
+        forcePathStyle: true
+        credentials:
+          fromEnv: false
+          secretRef:
+            secretName: my-s3-credentials
+            accessKeyKey: accessKey
+            secretKeyKey: secretKey
 kind: ConfigMap
 metadata:
   name: kfp-launcher
-data:
-  defaultPipelineRoot: $(kfp-default-pipeline-root)
+  namespace: user-namespace

@@ -12,7 +12,7 @@ data:
   artifactRepository: |
     archiveLogs: true
     s3:
-      endpoint: "minio-service.$(kfp-namespace):9000"
+      endpoint: "s3.amazonaws.com"
       bucket: "$(kfp-artifact-bucket-name)"
       # keyFormat is a format pattern to define how artifacts will be organized in a bucket.
       # It can reference workflow metadata variables such as workflow.namespace, workflow.name,
@@ -27,12 +27,12 @@ data:
       # Adding date into the path greatly reduces the chance of {{pod.name}} collision.
       keyFormat: "artifacts/{{workflow.name}}/{{workflow.creationTimestamp.Y}}/{{workflow.creationTimestamp.m}}/{{workflow.creationTimestamp.d}}/{{pod.name}}"
       # insecure will disable TLS. Primarily used for minio installs not configured with TLS
-      insecure: true
+      insecure: false
       accessKeySecret:
-        name: mlpipeline-minio-artifact
-        key: accesskey
+        name: my-s3-credentials
+        key: accessKey
       secretKeySecret:
-        name: mlpipeline-minio-artifact
-        key: secretkey
+        name: my-s3-credentials
+        key: secretKey
   executor: |
     imagePullPolicy: IfNotPresent

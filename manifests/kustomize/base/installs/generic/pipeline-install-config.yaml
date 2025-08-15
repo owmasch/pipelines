@@ -20,7 +20,7 @@ data:
   mlmdDb: metadb
   cacheDb: cachedb
   pipelineDb: mlpipeline
-  bucketName: mlpipeline
+  bucketName: owen-dev-test
   ## defaultPipelineRoot: Optional. Default pipeline root in v2 compatible mode.
   ## https://www.kubeflow.org/docs/components/pipelines/sdk/v2/v2-compatibility/
   ##
